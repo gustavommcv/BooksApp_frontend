@@ -43,14 +43,15 @@ export default function HomePage() {
     const sliderSettings = {
         dots: false,
         infinite: true,
+        slidesToScroll: 4,
         speed: 500,
-        centerMode: true,
         variableWidth: true,
         responsive: [
             {
                 breakpoint: 1024,
                 settings: {
                     arrows: false,
+                    slidesToScroll: 2,
                 }
             },
         ],
@@ -79,6 +80,8 @@ export default function HomePage() {
                     <h3>Explore Our Book Collection</h3>
                     <p>A wide selection of books, with ratings and user reviews to help guide your next great read.</p>
 
+                    <Button className={'home-page__button'}>Discover More Books</Button>
+
                     {loadingImages || books.length === 0 ? (
                         <Spinner />
                     ) : (
@@ -88,8 +91,6 @@ export default function HomePage() {
                             ))}
                         </Slider>
                     )}
-
-                    <Button className={'home-page__button'}>Discover More Books</Button>
                 </section>
             </div>
         </div>
