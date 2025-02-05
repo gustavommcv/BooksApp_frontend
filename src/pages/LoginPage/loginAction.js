@@ -19,8 +19,17 @@ export async function loginAction({ request }) {
     } catch (error) {
         console.error('Error during login:', error);
 
-        if (error.response && error.response.status === 401) {
+        if (error.response && error.response.status === 401 || error.response.status === 400) {
             return new Response(JSON.stringify({ error: 'Invalid email or password' }), {
+                status: 401,
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+        }
+
+        if (error.response && error.response.status === 404) {
+            return new Response(JSON.stringify({ error: 'User not found' }), {
                 status: 401,
                 headers: {
                     'Content-Type': 'application/json',
