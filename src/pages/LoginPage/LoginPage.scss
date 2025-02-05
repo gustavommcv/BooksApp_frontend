@@ -5,6 +5,11 @@
         margin-bottom: 3rem;
     }
 
+    &__error {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
     &__links {
         display: flex;
         flex-direction: column;

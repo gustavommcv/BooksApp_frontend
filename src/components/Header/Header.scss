@@ -5,6 +5,7 @@
   background-color: #f9f9f9;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 1.5rem;
   border-bottom: 1px solid rgba(128, 128, 128, 0.425);
 
@@ -17,6 +18,18 @@
     & a {
       color: var(--color-text);
       text-decoration: none;
+    }
+  }
+
+  &__logout {
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: var(--color-text);
+
+    border-bottom: 1px solid transparent;
+
+    &:hover {
+      border-bottom: 1px solid var(--color-text);
     }
   }
 

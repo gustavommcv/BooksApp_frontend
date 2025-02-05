@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link } from 'react-router-dom';
 import './BookHome.scss';
 
 // eslint-disable-next-line react/prop-types

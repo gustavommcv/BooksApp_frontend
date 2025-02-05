@@ -2,9 +2,10 @@ import Layout from "./pages/Shared/Layout/Layout";
 import HomePage from "./pages/HomePage/HomePage";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import { homeLoader } from "./pages/HomePage/homeLoader";
-import { createBrowserRouter } from "react-router";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
+import { loginAction } from "./pages/LoginPage/loginAction";
+import { createBrowserRouter } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
@@ -19,12 +20,13 @@ const router = createBrowserRouter([
       },
       {
         path: '/login',
-        element: <LoginPage />
+        element: <LoginPage />,
+        action: loginAction
       },
       {
         path: '/signup',
         element: <SignUpPage />
-      }
+      },
     ],
   },
 ]);

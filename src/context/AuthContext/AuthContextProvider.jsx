@@ -20,6 +20,13 @@ export default function AuthContextProvider({ children }) {
         };
 
         checkAuthStatus();
+
+        const handleLogin = () => setIsAuthenticated(true);
+        window.addEventListener('loginSuccess', handleLogin);
+
+        return () => {
+            window.removeEventListener('loginSuccess', handleLogin);
+        };
     }, []);
 
     const ctxValue = {

@@ -1,6 +1,6 @@
-import { Link } from 'react-router';
 import './SignUpPage.scss';
 import SignUpForm from '../../components/SignUpForm/SignUpForm';
+import { Link } from 'react-router-dom';
 
 export default function SignUpPage() {
     return (

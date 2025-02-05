@@ -1,6 +1,5 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useLoaderData } from 'react-router';
 import Button from '../../components/Button/Button';
 import './HomePage.scss';
 import Spinner from '../../components/Spinner/Spinner';
@@ -8,6 +7,7 @@ import { useMemo, useState, useEffect, useContext } from 'react';
 import BookHome from '../../components/BookHome/BookHome';
 import Slider from "react-slick";
 import { AuthContext } from "../../context/AuthContext/AuthContext";
+import { useLoaderData } from "react-router-dom";
 
 export default function HomePage() {
     const data = useLoaderData();
