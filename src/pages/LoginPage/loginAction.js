@@ -19,26 +19,21 @@ export async function loginAction({ request }) {
     } catch (error) {
         console.error('Error during login:', error);
 
-        if (error.response && error.response.status === 401 || error.response.status === 400) {
-            return new Response(JSON.stringify({ error: 'Invalid email or password' }), {
-                status: 401,
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
+        let errors = ['Something went wrong. Please try again later.']; // Default error
+
+        // Handling backend errors
+        if (error.response) {
+            if (error.response.data.errors) {
+                errors = error.response.data.errors.map(err => err.msg); // Collect error messages
+            } else if (error.response.status === 401 || error.response.status === 400) {
+                errors = ['Invalid email or password'];
+            } else if (error.response.status === 404) {
+                errors = ['User not found'];
+            }
         }
 
-        if (error.response && error.response.status === 404) {
-            return new Response(JSON.stringify({ error: 'User not found' }), {
-                status: 401,
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-        }
-
-        return new Response(JSON.stringify({ error: 'Something went wrong. Please try again later.' }), {
-            status: 500,
+        return new Response(JSON.stringify({ errors }), {
+            status: 400,
             headers: {
                 'Content-Type': 'application/json',
             },
