@@ -1,5 +1,9 @@
 @use '../../styles/abstracts/mixins' as *;
 
+a.button {
+    text-decoration: none;
+}
+
 .button {
     padding: 1rem 2rem;
     font-size: 1.4rem;
