@@ -61,7 +61,7 @@ export default function HomePage() {
         ],
         arrows: true,
     };
-    
+
     return (
         <div className="home-page">
             <div className="home-page__sections">
@@ -79,36 +79,38 @@ export default function HomePage() {
                             <p>
                                 Unlock tailored suggestions by leaving reviews on books you’ve read. The more you review, the better your recommendations become!
                             </p>
-                            
+
                             <Button navigateTo='/login' type={'link'} className={'home-page__button'}>Log In or Sign Up</Button>
                         </section>
                     </>
                 )}
 
                 {isAuthenticated && (
-                    <>
-                        <section className="home-page__recommendations">
-                            <h3>Your Personalized Book Recommendations Are Here!</h3>
-                            <p>
-                                We’ve curated a selection of books just for you! Dive into your next great read and uncover new favorites, based on your reviews and reading history.
-                            </p>
+                    <section className="home-page__recommendations">
+                        <h3>Your Personalized Book Recommendations</h3>
 
-                            {booksRecommendations.length === 0 ? (
-                                // Show button if no recommended books
+                        {booksRecommendations.length === 0 ? (
+                            <>
+                                <p>
+                                    You haven&lsquo;t reviewed any books yet. Start reviewing to get personalized recommendations tailored just for you!
+                                </p>
                                 <Button navigateTo='/books' type={'link'} className={'home-page__button'}>Start Reviewing</Button>
-                            ) : (
-                                <>
-                                    <Slider {...sliderSettings}>
-                                        {booksRecommendations.map((book) => (
-                                            <BookHome key={book._id} id={book._id} cover={book.cover} title={book.title} author={book.author} />
-                                        ))}
-                                    </Slider>
-                                    <Button navigateTo='/books' type={'link'} className={'home-page__button'}>Make More Reviews</Button>
-                                </>
-                            )}
-                        </section>
-                    </>
-                )}   
+                            </>
+                        ) : (
+                            <>
+                                <p>
+                                    We’ve curated a selection of books just for you! Dive into your next great read and uncover new favorites, based on your reviews and reading history.
+                                </p>
+                                <Slider {...sliderSettings}>
+                                    {booksRecommendations.map((book) => (
+                                        <BookHome key={book._id} id={book._id} cover={book.cover} title={book.title} author={book.author} />
+                                    ))}
+                                </Slider>
+                                <Button navigateTo='/books' type={'link'} className={'home-page__button'}>Make More Reviews</Button>
+                            </>
+                        )}
+                    </section>
+                )}
 
                 <section className="home-page__books">
                     <h3>Explore Our Book Collection</h3>

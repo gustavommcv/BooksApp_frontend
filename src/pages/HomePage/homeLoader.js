@@ -13,7 +13,7 @@ export async function homeLoader() {
     });
 
     if (authCheck.status === 200) {
-      const responseRecommendations = await axios.get(`${import.meta.env.VITE_API_URL}/books/recommendations`, {
+      const responseRecommendations = await axios.get(`${import.meta.env.VITE_API_URL}/books/recommendations?limit=50`, {
         withCredentials: true,
       });
       recommendedBooks = responseRecommendations.data.books;
