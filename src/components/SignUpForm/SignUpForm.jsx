@@ -26,8 +26,6 @@ export default function SignUpForm() {
 
         <div className='signup-form__checkbox-input'>
             <Button className='signup-form__submitButton'>Submit</Button>
-            <input type="checkbox" name="rememberMe" id="rememberMe" />
-            <label htmlFor="rememberMe">Remember email?</label>
         </div>
     </form>
     );
