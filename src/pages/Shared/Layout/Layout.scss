@@ -8,17 +8,17 @@
     transition: all var(--transition-default);
 
     &__content {
-        padding: 4rem;
+        padding: 6rem 4rem;
         flex-grow: 1;
         background-color: var(--color-background);
 
         @include respond("tablet") {
-            padding: 3rem;
+            padding: 4rem 3rem;
             height: 50px;
         }
         
         @include respond("mobile") {
-            padding: 1.5rem 2rem;
+            padding: 3rem 2rem;
             height: 50px;
         }
     }

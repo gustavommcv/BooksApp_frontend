@@ -3,14 +3,65 @@
 .home-page {
     transition: all var(--transition-default);
 
-    &__title {
-        font-size: 2.5rem;
-        color: var(--color-text);
+    &__sections {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        text-align: center;
     }
 
+    & section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 80rem;
+
+        &:not(:last-child) {
+            margin-bottom: 10rem;
+        }
+
+        & h3 {
+            font-size: 5rem;
+        }
+
+        & p {
+            font-size: 2rem;
+            font-weight: 600;
+            max-width: 70rem;
+        }
+        
+        & h3 {
+            margin-bottom: var(--spacing-medium);
+        }
+    }
+
+      
+
     @include respond("tablet") {
-        &__title {
-          font-size: 2rem;
+        & section {
+            & h3 {
+                font-size: 3rem;
+            }
+
+            & p {
+                font-size: 1.8rem;
+            }
+        }
+    }
+
+    @include respond("mobile") {
+        
+        & section {
+            max-width: 60rem;
+            & h3 {
+                font-size: 2rem;
+            }
+
+            & p {
+                font-size: 1.5rem;
+            }
         }
     }
 }
