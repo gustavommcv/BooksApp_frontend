@@ -13,9 +13,9 @@ export default function LoginPage() {
                 <p>
                     <Link to='/forgot-password'>Forgot your password?</Link>
                 </p>
-                <p>New around here? <Link to='/forgot-password'>Create your accont</Link></p>
+                <p>New around here? <Link to='/signup'>Create your accont</Link></p>
             </div>
             
         </div>
-    )
+    );
 }
