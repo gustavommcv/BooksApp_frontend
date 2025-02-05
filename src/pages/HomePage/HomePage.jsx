@@ -1,17 +1,16 @@
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { useLoaderData } from 'react-router';
 import Button from '../../components/Button/Button';
 import './HomePage.scss';
 import Spinner from '../../components/Spinner/Spinner';
-import { useState, useEffect, useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import BookHome from '../../components/BookHome/BookHome';
+import Slider from "react-slick";
 
 export default function HomePage() {
-    
     const data = useLoaderData();
-
-    // Memorize the books list to prevent unnecessary re-renders
     const books = useMemo(() => data?.books || [], [data]);
-
     const [loadingImages, setLoadingImages] = useState(true);
     const totalImages = books.length;
 
@@ -23,25 +22,41 @@ export default function HomePage() {
             return;
         }
 
-        // Load and monitor each book image
         books.forEach((book) => {
             const img = new Image();
             img.src = book.cover;
             img.onload = () => {
                 loadedImages += 1;
                 if (loadedImages === totalImages) {
-                    setLoadingImages(false); // Stop loading once all images are loaded
+                    setLoadingImages(false);
                 }
             };
             img.onerror = () => {
                 loadedImages += 1;
                 if (loadedImages === totalImages) {
-                    setLoadingImages(false); // Handle any image loading errors
+                    setLoadingImages(false);
                 }
             };
         });
     }, [books, totalImages]);
 
+    const sliderSettings = {
+        dots: false,
+        infinite: true,
+        speed: 500,
+        centerMode: true,
+        variableWidth: true,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    arrows: false,
+                }
+            },
+        ],
+        arrows: true,
+    };
+    
     return (
         <div className="home-page">
             <div className="home-page__sections">
@@ -64,17 +79,17 @@ export default function HomePage() {
                     <h3>Explore Our Book Collection</h3>
                     <p>A wide selection of books, with ratings and user reviews to help guide your next great read.</p>
 
-                    <Button className={'home-page__button'}>Discover More Books</Button>
-
                     {loadingImages || books.length === 0 ? (
                         <Spinner />
                     ) : (
-                        <div className="book-previews">
+                        <Slider {...sliderSettings}>
                             {books.map((book) => (
-                                <BookHome key={book.id} id={book._id} cover={book.cover} title={book.title} author={book.author} />
+                                <BookHome key={book._id} id={book._id} cover={book.cover} title={book.title} author={book.author} />
                             ))}
-                        </div>
+                        </Slider>
                     )}
+
+                    <Button className={'home-page__button'}>Discover More Books</Button>
                 </section>
             </div>
         </div>

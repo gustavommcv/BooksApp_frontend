@@ -71,6 +71,35 @@
     }
 }
 
+.slick-list {
+    position: relative !important;
+    padding: 5rem 0 !important;
+    width: 100vw !important;
+}
+
+.slick-slide {
+    padding: 0 1rem !important;
+}
+
+.slick-arrow {
+    position: absolute !important;
+    top: 43% !important;
+    transform: translateY(-50%) !important;
+    z-index: 2 !important;
+    width: 40px !important;
+    height: 40px !important;
+    background-color: black !important;
+    border-radius: 5px;
+}
+
+.slick-prev {
+    left: 1% !important;
+}
+
+.slick-next {
+    right: 1% !important;
+}
+
 .home-page__spinner {
     width: 50px;
     height: 50px;
