@@ -101,12 +101,12 @@ export default function HomePage() {
                                 <p>
                                     We’ve curated a selection of books just for you! Dive into your next great read and uncover new favorites, based on your reviews and reading history.
                                 </p>
+                                <Button navigateTo='/books' type={'link'} className={'home-page__button'}>Make More Reviews</Button>
                                 <Slider {...sliderSettings}>
                                     {booksRecommendations.map((book) => (
                                         <BookHome key={book._id} id={book._id} cover={book.cover} title={book.title} author={book.author} />
                                     ))}
                                 </Slider>
-                                <Button navigateTo='/books' type={'link'} className={'home-page__button'}>Make More Reviews</Button>
                             </>
                         )}
                     </section>
