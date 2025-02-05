@@ -1,10 +1,11 @@
+import { Form } from 'react-router-dom';
 import Button from '../Button/Button';
 import FloatingLabelInput from '../FloatingLabelInput/FloatingLabelInput'
 import './SignUpForm.scss';
 
 export default function SignUpForm() {
     return (
-        <form className="signup-form" action="">
+        <Form method='POST' className="signup-form">
         <FloatingLabelInput
             id="email"
             type="email"
@@ -27,6 +28,6 @@ export default function SignUpForm() {
         <div className='signup-form__checkbox-input'>
             <Button className='signup-form__submitButton'>Submit</Button>
         </div>
-    </form>
+    </Form>
     );
 }

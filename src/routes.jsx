@@ -8,6 +8,7 @@ import { loginAction } from "./pages/LoginPage/loginAction";
 import { createBrowserRouter } from "react-router-dom";
 import BookPage from "./pages/BookPage/BookPage";
 import BooksPage from "./pages/BooksPage/BooksPage";
+import { signUpAction } from "./pages/SignUpPage/SignUpAction";
 
 const router = createBrowserRouter([
   {
@@ -27,7 +28,8 @@ const router = createBrowserRouter([
       },
       {
         path: '/signup',
-        element: <SignUpPage />
+        element: <SignUpPage />,
+        action: signUpAction
       },
       {
         path: '/books',
