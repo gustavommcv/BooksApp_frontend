@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
 import { AuthContext } from "./AuthContext";
+import { Navigate } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 export default function AuthContextProvider({ children }) {
@@ -29,9 +30,23 @@ export default function AuthContextProvider({ children }) {
         };
     }, []);
 
+    const logout = async () => {
+        try {
+            await axios.post(`${import.meta.env.VITE_API_URL}/auth/logout`, {}, {
+                withCredentials: true
+            });
+
+            setIsAuthenticated(false);
+            Navigate('/');
+        } catch (error) {
+            console.error('Error during logout:', error);
+        }
+    };
+
     const ctxValue = {
         isAuthenticated,
-        setIsAuthenticated
+        setIsAuthenticated,
+        logout
     }
 
     return (
