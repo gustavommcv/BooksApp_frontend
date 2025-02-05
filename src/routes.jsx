@@ -6,6 +6,8 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
 import { loginAction } from "./pages/LoginPage/loginAction";
 import { createBrowserRouter } from "react-router-dom";
+import BookPage from "./pages/BookPage/BookPage";
+import BooksPage from "./pages/BooksPage/BooksPage";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +29,20 @@ const router = createBrowserRouter([
         path: '/signup',
         element: <SignUpPage />
       },
+      {
+        path: '/books',
+        children: [
+          {
+            index: true,
+            element: <BooksPage />
+          },
+          {
+            path: ':bookId',
+            element: <BookPage />
+          }
+        ]
+      }
+      
     ],
   },
 ]);
