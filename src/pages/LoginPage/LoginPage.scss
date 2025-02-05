@@ -1,0 +1,27 @@
+.login-page {
+    text-align: center;
+
+    &__title {
+        margin-bottom: 3rem;
+    }
+
+    &__links {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        margin-top: 2rem;
+
+        font-size: 1.3rem;
+
+        & a {
+            text-decoration: none;
+            color: #267CD3;
+
+            border-bottom: 1px solid transparent;
+
+            &:hover {
+                border-bottom: 1px solid #267CD3;
+            }
+        }
+    }
+}

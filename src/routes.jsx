@@ -3,6 +3,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import { homeLoader } from "./pages/HomePage/homeLoader";
 import { createBrowserRouter } from "react-router";
+import LoginPage from "./pages/LoginPage/LoginPage";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
         element: <HomePage />,
         loader: homeLoader, 
       },
+      {
+        path: '/login',
+        element: <LoginPage />
+      }
     ],
   },
 ]);

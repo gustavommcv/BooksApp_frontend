@@ -1,0 +1,42 @@
+.floating-label-input {
+    width: 100%;
+    max-width: 45rem;
+    position: relative;
+
+    &__field {
+        width: 100%;
+        padding: 2.5rem 2rem 1rem 2rem;
+        font-size: 16px;
+        outline: none;
+        border: 1px solid rgba(128, 128, 128, 0.767);
+        color: (--color-text);
+
+        // Styles for specific input types
+        &--email {
+            border-radius: 15px 15px 0px 0px;
+        }
+
+        &--password {
+            border-radius: 0px 0px 15px 15px;
+            border-top: 0px;
+        }
+    }
+
+    &__label {
+        position: absolute;
+        top: 1.8rem;
+        left: 2rem;
+        font-size: 16px;
+        color: var(--color-text);
+        transition: all 0.2s ease;
+        pointer-events: none;
+    }
+
+    // Move label to the top when input has focus or text
+    &__field:focus + &__label,
+    &__field:not(:placeholder-shown) + &__label {
+        top: 0.7rem;
+        font-size: 12px;
+        color: #666666;
+    }
+}
