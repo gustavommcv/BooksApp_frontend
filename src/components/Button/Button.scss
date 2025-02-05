@@ -1,3 +1,5 @@
+@use '../../styles/abstracts/mixins' as *;
+
 .button {
     padding: 1rem 2rem;
     font-size: 1.4rem;
@@ -18,5 +20,9 @@
     &:active {
         transform: translateY(2px);
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    @include respond("tablet") {
+        font-size: 1.2rem;
     }
 }

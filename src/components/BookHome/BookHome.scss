@@ -1,0 +1,38 @@
+@use '../../styles/abstracts/mixins' as *;
+
+.book-home {
+    width: fit-content;
+    text-align: left;
+
+    &__cover {
+        height: 50rem;
+        border-radius: 10px;
+
+        object-fit: cover;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    }
+
+    &__title {
+        color: var(--color-text);
+        font-size: 1.6rem;
+        font-weight: 400;
+    }
+
+    &__author {
+        font-size: 1.8rem !important;
+        color: #9D9DA1;
+        font-weight: 400 !important;
+    }
+
+    @include respond("tablet") {
+        &__cover {
+            height: 35rem;
+        }
+    }
+
+    @include respond("mobile") {
+        &__cover {
+            height: 30rem;
+        }
+    }
+}
