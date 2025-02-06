@@ -10,6 +10,7 @@ import BookPage from "./pages/BookPage/BookPage";
 import BooksPage from "./pages/BooksPage/BooksPage";
 import { signUpAction } from "./pages/SignUpPage/SignUpAction";
 import bookPageLoader from "./pages/BookPage/bookPageLoader";
+import booksPageLoader from "./pages/BooksPage/booksPageLoader";
 
 const router = createBrowserRouter([
   {
@@ -37,7 +38,8 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <BooksPage />
+            element: <BooksPage />,
+            loader: booksPageLoader
           },
           {
             path: ':bookId',
