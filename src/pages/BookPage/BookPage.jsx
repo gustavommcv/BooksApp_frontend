@@ -1,13 +1,16 @@
 import { Link, useLoaderData } from 'react-router-dom';
 import { useState } from 'react';
 import './BookPage.scss';
+import ReviewBox from '../../components/ReviewBox/ReviewBox';
 
 export default function BookPage() {
-    const bookData = useLoaderData();
+    const { bookData, reviews} = useLoaderData();
     const [showFullDescription, setShowFullDescription] = useState(false);
 
-    console.log(bookData)
+    console.log(bookData, reviews)
+    
     const publicationYear = new Date(bookData.publicationDate).getFullYear();
+    const reviewsCount = bookData.reviews.length;
 
     const toggleDescription = () => setShowFullDescription(!showFullDescription);
 
@@ -47,7 +50,7 @@ export default function BookPage() {
                     <p>
                         <Link className="book-page__author">{bookData.author}</Link>
                     </p>
-                    <p className="book-page__rating">Rating: {bookData.averageRating || 'No ratings yet'} • 0 reviews</p>
+                    <p className="book-page__rating">Rating: {bookData.averageRating || 'No ratings yet'} • {reviewsCount} reviews</p>
                 </div>
             </section>
 
@@ -83,8 +86,16 @@ export default function BookPage() {
 
             <section className="book-page__reviews-section">
                 <h3 className="book-page__subtitle">Reviews</h3>
-                <p className="book-page__rating">{bookData.averageRating || 'No reviews available for this book yet'}</p>
+                {bookData.averageRating ? (
+                    reviews.map(review => <ReviewBox key={review._id} title={review.title} content={review.content} createdAt={review.createdAt} rating={review.rating} userName={review.userId.userName} />)
+                ) : (
+                    <>
+                        <p className="book-page__rating">No reviews available for this book yet</p>
+                        <Link>Review it now</Link>
+                    </>
+                )}
             </section>
+
         </div>
     );
 }
