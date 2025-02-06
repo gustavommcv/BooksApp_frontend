@@ -3,6 +3,8 @@ import { useState } from 'react';
 import './BookPage.scss';
 import ReviewBox from '../../components/ReviewBox/ReviewBox';
 
+import { Rating } from 'react-simple-star-rating';
+
 export default function BookPage() {
     const { bookData, reviews} = useLoaderData();
     const [showFullDescription, setShowFullDescription] = useState(false);
@@ -50,7 +52,13 @@ export default function BookPage() {
                     <p>
                         <Link className="book-page__author">{bookData.author}</Link>
                     </p>
-                    <p className="book-page__rating">Rating: {bookData.averageRating || 'No ratings yet'} • {reviewsCount} reviews</p>
+                    <div className="book-page__rating">
+                        {bookData.averageRating ? <Rating size={24} readonly={true} initialValue={bookData.averageRating} /> : undefined}
+                        {bookData.averageRating ? <p>{reviewsCount} reviews</p> : undefined}
+                         
+                        {!bookData.averageRating && 'No ratings yet | '} 
+                        {!bookData.averageRating && <Link>Review it now</Link>} 
+                    </div>
                 </div>
             </section>
 

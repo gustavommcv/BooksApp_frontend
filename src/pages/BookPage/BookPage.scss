@@ -39,6 +39,32 @@
         margin-top: 1rem;
         margin-bottom: 1rem;
         font-size: 1.5rem;
+
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+
+        @include respond("mobile") {
+            flex-direction: column;
+            align-items: start;
+        }
+
+        & p {
+            transform: translateY(-10%);
+            color: gray;
+        }
+
+        & a {
+            font-size: 1.4rem;
+            text-decoration: none;
+            color: #267CD3;
+
+            border-bottom: 1px solid transparent;
+
+            &:hover {
+                border-bottom: 1px solid #267CD3;
+            }
+        }
     }
 
     &__description-section {
