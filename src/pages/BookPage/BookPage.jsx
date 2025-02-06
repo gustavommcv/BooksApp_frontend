@@ -1,13 +1,16 @@
 import { Link, useLoaderData } from 'react-router-dom';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import './BookPage.scss';
 import ReviewBox from '../../components/ReviewBox/ReviewBox';
 
 import { Rating } from 'react-simple-star-rating';
+import { AuthContext } from '../../context/AuthContext/AuthContext';
 
 export default function BookPage() {
     const { bookData, reviews} = useLoaderData();
     const [showFullDescription, setShowFullDescription] = useState(false);
+
+    const { isAuthenticated } = useContext(AuthContext);
 
     console.log(bookData, reviews)
     
@@ -57,7 +60,8 @@ export default function BookPage() {
                         {bookData.averageRating ? <p>{reviewsCount} reviews</p> : undefined}
                          
                         {!bookData.averageRating && 'No ratings yet | '} 
-                        {!bookData.averageRating && <Link>Review it now</Link>} 
+                        {!bookData.averageRating && isAuthenticated && <Link to={`/post-review/${bookData._id}`}>Review it now</Link>}
+                        {!bookData.averageRating && !isAuthenticated && <Link to={'/login'}>Review it now</Link>}
                     </div>
                 </div>
             </section>
@@ -99,7 +103,8 @@ export default function BookPage() {
                 ) : (
                     <>
                         <p className="book-page__rating">No reviews available for this book yet</p>
-                        <Link>Review it now</Link>
+                        {isAuthenticated && <Link to={`/post-review/${bookData._id}`}>Review it now</Link>}
+                        {!isAuthenticated && <Link to={'/login'}>Review it now</Link>}
                     </>
                 )}
             </section>
