@@ -1,0 +1,149 @@
+@use '../../styles/abstracts/mixins' as *;
+
+.book-page {
+    margin: 0 auto;
+    max-width: 100rem;
+    padding: 0 2rem;
+
+    &__display {
+        display: flex;
+        gap: 3rem;
+        padding: 0 0 4rem 0;
+        border-bottom: 1px solid rgba(128, 128, 128, 0.425);
+    }
+
+    &__cover {
+        width: 100%;
+        max-width: 30rem;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+
+    &__title {
+        font-size: 2.5rem;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-weight: 600;
+    }
+
+    &__author {
+        font-size: 1.8rem;
+        text-decoration: none;
+        color: #267CD3;
+        border-bottom: 1px solid transparent;
+
+        &:hover {
+            border-bottom: 1px solid #267CD3;
+        }
+    }
+
+    &__rating {
+        margin-top: 1rem;
+        font-size: 1.5rem;
+    }
+
+    &__description-section {
+        padding: 2.5rem 0;
+
+        border-bottom: 1px solid rgba(128, 128, 128, 0.425);
+    }
+
+    &__subtitle {
+        font-size: 2rem;
+        font-weight: 500;
+        margin-bottom: 1.5rem;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+
+    &__description {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        color: #333;
+
+        .book-page__paragraph {
+            margin-bottom: 1rem;
+
+            blockquote {
+                font-style: italic;
+                margin-left: 1.5rem;
+                color: #555;
+                padding-left: 1.2rem;
+                border-left: 3px solid #ccc;
+            }
+        }
+    }
+
+    &__toggle-button {
+        background: none;
+        border: none;
+        color: #267CD3;
+        font-size: 1.2rem;
+        cursor: pointer;
+        padding: 0;
+        margin-top: 0.5rem;
+        text-decoration: none;
+        display: inline;
+
+        &:hover {
+            color: #1a5aa6;
+        }
+    }
+
+    &__reviews-section {
+        padding: 2rem 0;
+    }
+
+    @include respond("tablet") {
+        max-width: 70rem;
+    }
+
+    @include respond("mobile") {
+        &__title {
+            font-size: 2rem;
+        }
+
+        &__author {
+            font-size: 1.5rem;
+        }
+
+        &__rating {
+            font-size: 1.2rem;
+        }
+    }
+}
+
+.info-bar {
+    display: flex;
+    margin: 2rem 0 0 1rem;
+    justify-content: center;
+    color: var(--color-text);
+    text-align: center;
+
+    &__label {
+        padding: 1rem 10rem;
+
+        &-title {
+            font-size: 1.2rem;
+        }
+
+        &-content {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        &:not(:last-child) {
+            border-right:  1px solid rgba(128, 128, 128, 0.425);
+        }
+    }
+
+    @include respond("tablet") {
+        &__label {
+            padding: 1rem 6rem;
+        }
+    }
+
+    @include respond("mobile") {
+
+        &__label {
+            padding: 1rem 4rem;
+        }
+    }
+}

@@ -9,6 +9,7 @@ import { createBrowserRouter } from "react-router-dom";
 import BookPage from "./pages/BookPage/BookPage";
 import BooksPage from "./pages/BooksPage/BooksPage";
 import { signUpAction } from "./pages/SignUpPage/SignUpAction";
+import bookPageLoader from "./pages/BookPage/bookPageLoader";
 
 const router = createBrowserRouter([
   {
@@ -40,7 +41,8 @@ const router = createBrowserRouter([
           },
           {
             path: ':bookId',
-            element: <BookPage />
+            element: <BookPage />,
+            loader: bookPageLoader
           }
         ]
       }
