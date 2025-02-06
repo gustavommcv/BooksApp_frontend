@@ -1,0 +1,40 @@
+@use '../../styles/abstracts/mixins' as *;
+
+.review-box {
+    display: flex;
+    flex-direction: column;
+    background-color: #F8F8F8;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+
+    &__user-info {
+        display: flex;
+        color: #4d4d4d;
+        gap: .5rem;
+
+        font-size: 1.1rem;
+    }
+
+    &__review-info {
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: .2rem;
+    }
+
+    &__title {
+        font-size: 1.8rem;
+        font-weight: 600;
+
+        @include respond("mobile") {
+            font-size: 1.4rem;
+        }
+    }
+
+    &__content {
+        font-size: 1.2rem;
+        @include respond("mobile") {
+            font-size: 1.1rem;
+        }
+    }
+}
