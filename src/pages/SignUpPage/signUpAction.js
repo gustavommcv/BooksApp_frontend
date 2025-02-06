@@ -1,4 +1,3 @@
-import { redirect } from "react-router-dom";
 import axios from 'axios';
 
 export async function signUpAction({ request }) {
@@ -20,7 +19,7 @@ export async function signUpAction({ request }) {
         );
 
         // On success, redirect to login
-        return redirect('/login');
+        return { successMessage: `Verification email sent successfully to: ${email}` };
     } catch (error) {
         console.error('Signup error:', error);
 

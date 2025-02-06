@@ -5,7 +5,7 @@
         margin-bottom: 3rem;
     }
 
-    &__error {
+    &__error, &__success {
         font-size: 1.5rem;
         margin-bottom: 2rem;
     }
@@ -27,6 +27,18 @@
             &:hover {
                 border-bottom: 1px solid #267CD3;
             }
+        }
+    }
+
+    &__loginBtn {
+        font-size: 1.5rem;
+        text-decoration: none;
+        color: #267CD3;
+
+        border-bottom: 1px solid transparent;
+
+        &:hover {
+            border-bottom: 1px solid #267CD3;
         }
     }
 }
