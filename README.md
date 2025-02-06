@@ -1,5 +1,13 @@
 # 📚 BooksApp - Frontend Interface for Book Management
 
+---
+
+![image](https://github.com/user-attachments/assets/fdcfee16-5239-4df7-8ee0-e4076c03370b)
+
+![image](https://github.com/user-attachments/assets/5d3d1b96-637a-45c8-a927-52ce5d31bc29)
+
+---
+
 ## 📖 Description
 BooksApp Frontend is the user-facing interface of the BooksApp platform, allowing users to browse the book catalog, leave ratings, write reviews, and manage their profiles. The application integrates seamlessly with the backend API and external services to provide an interactive and personalized user experience.
 
