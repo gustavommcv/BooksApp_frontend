@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import './ProfilePage.scss';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -27,7 +27,7 @@ export default function ProfilePage() {
 
     return (
         <div className="profile-page">
-            {user && (
+            {user ? (
                 <>
                     <h1>Profile page</h1>
                     <h3 className="profile-page__name">{user.userName}</h3>
@@ -64,14 +64,16 @@ export default function ProfilePage() {
                             {user.reviews.length > 0 ? (
                                 user.reviews.map(review => (
                                     <li key={review._id}>
-                                        <ReviewBox 
-                                            key={review._id} 
-                                            title={review.title} 
-                                            content={review.content} 
-                                            createdAt={review.createdAt} 
-                                            rating={review.rating} 
-                                            userName={user.userName} 
-                                        />
+                                        <Link className='profile-page__reviews-link' to={`/review/${review._id}`}>
+                                            <ReviewBox
+                                                key={review._id}
+                                                title={review.title}
+                                                content={review.content}
+                                                createdAt={review.createdAt}
+                                                rating={review.rating}
+                                                userName={user.userName}
+                                            />
+                                        </Link>
                                     </li>
                                 ))
                             ) : (
@@ -97,7 +99,7 @@ export default function ProfilePage() {
                         </ul>
                     )}
                 </>
-            )}
+            ) : <h2>User not found</h2>}
         </div>
     );
 }

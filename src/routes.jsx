@@ -12,6 +12,7 @@ import { signUpAction } from "./pages/SignUpPage/SignUpAction";
 import bookPageLoader from "./pages/BookPage/bookPageLoader";
 import booksPageLoader from "./pages/BooksPage/booksPageLoader";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import ReviewPage from "./pages/ReviewPage/ReviewPage";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: '/profile/:userId',
         element: <ProfilePage />
+      },
+      {
+        path: '/review/:reviewId',
+        element: <ReviewPage />
       },
       {
         path: '/books',
