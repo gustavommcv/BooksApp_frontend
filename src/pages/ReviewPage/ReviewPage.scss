@@ -2,4 +2,37 @@
     margin: 0 auto;
     max-width: 100rem;
     padding: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+    }
+
+    &__title {
+        font-size: 1.8rem;
+    }
+
+    &__book-link {
+        font-size: 1.8rem;
+
+        text-decoration: none;
+        color: #267CD3;
+
+        border-bottom: 1px solid transparent;
+
+        &:hover {
+            border-bottom: 1px solid #267CD3;
+        }
+    }
+
+    &__comments-section {
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
+    }
 }

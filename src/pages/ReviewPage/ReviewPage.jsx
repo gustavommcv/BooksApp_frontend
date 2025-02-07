@@ -40,7 +40,12 @@ export default function ReviewPage() {
         <div className="review-page">
             {review ? (
                 <>
-                    <Link className='review-page__book-link' to={`/books/${review.bookId}`}>Go to Book</Link>
+                    <div className='review-page__header'>
+                        <h2 className='review-page__title'>Reviews</h2>
+                        <p>
+                            <Link className='review-page__book-link' to={`/books/${review.bookId}`}>Go to Book</Link>
+                        </p>
+                    </div>
 
                     {/* Display the review */}
                     <ReviewBox 
@@ -54,7 +59,7 @@ export default function ReviewPage() {
 
                     {/* Comments section */}
                     <div className="review-page__comments-section">
-                        <h2>Comments</h2>
+                        <h2 className='review-page__title'>Comments</h2>
 
                         {/* Check if there are comments */}
                         {comments.length > 0 ? (
