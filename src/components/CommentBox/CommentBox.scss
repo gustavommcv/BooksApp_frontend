@@ -1,0 +1,35 @@
+.comment-box {
+    background-color: #F8F8F8;
+    border: none;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+
+    &__title {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 0.8rem;
+
+        @media (max-width: 768px) {
+            font-size: 1.4rem;
+        }
+    }
+
+    &__user {
+        font-size: 1.1rem;
+        color: #777;
+        margin-bottom: 1.2rem;
+    }
+
+    &__content {
+        font-size: 1.2rem;
+        color: #444;
+        line-height: 1.6;
+
+        @media (max-width: 768px) {
+            font-size: 1.1rem;
+        }
+    }
+}

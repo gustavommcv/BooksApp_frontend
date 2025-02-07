@@ -3,6 +3,7 @@ import './ProfilePage.scss';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import ReviewBox from '../../components/ReviewBox/ReviewBox';
+import CommentBox from '../../components/CommentBox/CommentBox';
 
 export default function ProfilePage() {
     const { userId } = useParams(); // Get the user ID from the route
@@ -86,11 +87,12 @@ export default function ProfilePage() {
                             {user.comments.length > 0 ? (
                                 user.comments.map(comment => (
                                     <li className='profile-page__comment' key={comment._id}>
-                                        <p className='profile-page__comment-title'><strong>{comment.reviewId.title}</strong></p>
-                                        <p className='profile-page__comment-user'>
-                                            {user.userName} commented on {new Date(comment.createdAt).toLocaleDateString()}
-                                        </p>
-                                        <p className='profile-page__comment-content'>{comment.content}</p>
+                                        <CommentBox
+                                            title={comment.reviewId.title}
+                                            userName={user.userName}
+                                            createdAt={comment.createdAt}
+                                            content={comment.content}
+                                        />
                                     </li>
                                 ))
                             ) : (
