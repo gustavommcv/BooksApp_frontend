@@ -36,6 +36,8 @@ export default function ReviewPage() {
         fetchData();
     }, [reviewId]);
 
+    console.log(review);
+
     return (
         <div className="review-page">
             {review ? (
@@ -55,6 +57,7 @@ export default function ReviewPage() {
                         title={review.title} 
                         userName={review.userId.userName} 
                         key={review._id} 
+                        userId={review.userId._id}
                     />
 
                     {/* Comments section */}

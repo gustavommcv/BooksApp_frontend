@@ -99,12 +99,22 @@ export default function BookPage() {
             <section className="book-page__reviews-section">
                 <h3 className="book-page__subtitle">Reviews</h3>
                 {bookData.averageRating ? (
-                    reviews.map(review => <ReviewBox key={review._id} title={review.title} content={review.content} createdAt={review.createdAt} rating={review.rating} userName={review.userId.userName} />)
+                    reviews.map(review => 
+                        <ReviewBox 
+                            key={review._id}
+                            reviewId={review._id}
+                            title={review.title}
+                            content={review.content}
+                            createdAt={review.createdAt}
+                            rating={review.rating}
+                            userName={review.userId.userName}
+                            userId={review.userId._id}
+                        />)
                 ) : (
                     <>
                         <p className="book-page__rating">No reviews available for this book yet</p>
                         {isAuthenticated && <Link to={`/post-review/${bookData._id}`}>Review it now</Link>}
-                        {!isAuthenticated && <Link to={'/login'}>Review it now</Link>}
+                        {!isAuthenticated && <Link className='book-page__reviews-section-rating-link' to={'/login'}>Review it now</Link>}
                     </>
                 )}
             </section>

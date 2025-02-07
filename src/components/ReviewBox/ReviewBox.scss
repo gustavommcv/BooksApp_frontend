@@ -2,10 +2,16 @@
 
 .review-box {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
     background-color: #F8F8F8;
     padding: 1rem 2rem;
     border-radius: 10px;
+
+    &__user-link {
+        color: inherit;
+    }
 
     &__user-info {
         display: flex;
@@ -36,5 +42,9 @@
         @include respond("mobile") {
             font-size: 1.1rem;
         }
+    }
+
+    &__comments-link {
+        color: var(--color-text);
     }
 }
