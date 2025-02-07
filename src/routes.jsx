@@ -14,6 +14,7 @@ import booksPageLoader from "./pages/BooksPage/booksPageLoader";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ReviewPage from "./pages/ReviewPage/ReviewPage";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import PostReviewPage from "./pages/PostReviewPage/PostReviewPage";
 
 const router = createBrowserRouter([
   {
@@ -65,7 +66,8 @@ const router = createBrowserRouter([
         element: <ProtectedRoute />,
         children: [
           {
-            path: ':bookId'
+            path: ':bookId',
+            element: <PostReviewPage />
           }
         ]
       }
