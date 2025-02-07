@@ -5,14 +5,19 @@ import ReviewBox from '../../components/ReviewBox/ReviewBox';
 
 import { Rating } from 'react-simple-star-rating';
 import { AuthContext } from '../../context/AuthContext/AuthContext';
+import Button from '../../components/Button/Button';
 
 export default function BookPage() {
     const { bookData, reviews} = useLoaderData();
     const [showFullDescription, setShowFullDescription] = useState(false);
 
-    const { isAuthenticated } = useContext(AuthContext);
+    const { isAuthenticated, user } = useContext(AuthContext);
 
-    console.log(bookData, reviews)
+    // Check if the user has already reviewed this book
+    const userHasReviewed = () => {
+        if (!user) return 0;
+        return reviews.some(review => review.userId._id === user._id);
+    };
     
     const publicationYear = new Date(bookData.publicationDate).getFullYear();
     const reviewsCount = bookData.reviews.length;
@@ -63,6 +68,8 @@ export default function BookPage() {
                         {!bookData.averageRating && isAuthenticated && <Link to={`/post-review/${bookData._id}`}>Review it now</Link>}
                         {!bookData.averageRating && !isAuthenticated && <Link to={'/login'}>Review it now</Link>}
                     </div>
+                    {!userHasReviewed() && (bookData.averageRating && isAuthenticated) ? <Button type={'link'} navigateTo={`/post-review/${bookData._id}`}>Review this book</Button> : undefined}
+                    
                 </div>
             </section>
 
@@ -113,7 +120,7 @@ export default function BookPage() {
                 ) : (
                     <>
                         <p className="book-page__rating">No reviews available for this book yet</p>
-                        {isAuthenticated && <Link to={`/post-review/${bookData._id}`}>Review it now</Link>}
+                        {isAuthenticated && <Link className='book-page__reviews-section-rating-link' to={`/post-review/${bookData._id}`}>Review it now</Link>}
                         {!isAuthenticated && <Link className='book-page__reviews-section-rating-link' to={'/login'}>Review it now</Link>}
                     </>
                 )}
