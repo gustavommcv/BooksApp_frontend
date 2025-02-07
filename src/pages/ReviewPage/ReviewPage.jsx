@@ -43,7 +43,7 @@ export default function ReviewPage() {
             {review ? (
                 <>
                     <div className='review-page__header'>
-                        <h2 className='review-page__title'>Reviews</h2>
+                        <h2 className='review-page__title'>Review</h2>
                         <p>
                             <Link className='review-page__book-link' to={`/books/${review.bookId}`}>Go to Book</Link>
                         </p>
