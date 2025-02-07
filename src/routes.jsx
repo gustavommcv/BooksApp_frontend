@@ -11,6 +11,7 @@ import BooksPage from "./pages/BooksPage/BooksPage";
 import { signUpAction } from "./pages/SignUpPage/SignUpAction";
 import bookPageLoader from "./pages/BookPage/bookPageLoader";
 import booksPageLoader from "./pages/BooksPage/booksPageLoader";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
         path: '/signup',
         element: <SignUpPage />,
         action: signUpAction
+      },
+      {
+        path: '/profile/:userId',
+        element: <ProfilePage />
       },
       {
         path: '/books',

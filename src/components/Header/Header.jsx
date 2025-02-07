@@ -69,11 +69,11 @@ export default function Header() {
                         <div className="header__dropdown">
                             <ul>
                                 <li>
-                                    <Link to="/profile">Profile</Link>
+                                    <Link onClick={toggleMenu} to={`/profile/${user._id}`}>Profile</Link>
                                 </li>
-                                {/* <li>
+                                <li>
                                     <Link to="/settings">Settings</Link>
-                                </li> */}
+                                </li>
                                 <li onClick={handleLogout}>Logout</li>
                             </ul>
                         </div>
