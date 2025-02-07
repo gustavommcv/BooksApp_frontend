@@ -13,6 +13,7 @@ import bookPageLoader from "./pages/BookPage/bookPageLoader";
 import booksPageLoader from "./pages/BooksPage/booksPageLoader";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ReviewPage from "./pages/ReviewPage/ReviewPage";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -57,8 +58,17 @@ const router = createBrowserRouter([
             loader: bookPageLoader
           }
         ]
+      },
+      // Protected routes
+      {
+        path: '/post-review',
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: ':bookId'
+          }
+        ]
       }
-      
     ],
   },
 ]);

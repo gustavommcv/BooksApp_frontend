@@ -2,53 +2,41 @@ import { Link, useLoaderData } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import './BookPage.scss';
 import ReviewBox from '../../components/ReviewBox/ReviewBox';
-
 import { Rating } from 'react-simple-star-rating';
 import { AuthContext } from '../../context/AuthContext/AuthContext';
 import Button from '../../components/Button/Button';
 
 export default function BookPage() {
-    const { bookData, reviews} = useLoaderData();
+    const { bookData, reviews } = useLoaderData();
     const [showFullDescription, setShowFullDescription] = useState(false);
-
     const { isAuthenticated, user } = useContext(AuthContext);
 
     // Check if the user has already reviewed this book
-    const userHasReviewed = () => {
-        if (!user) return 0;
-        return reviews.some(review => review.userId._id === user._id);
-    };
-    
+    const userHasReviewed = isAuthenticated && reviews.some(review => review.userId._id === user._id);
+
+    // Determine if the "Review this book" button should be shown
+    const shouldShowReviewButton = isAuthenticated && !userHasReviewed;
+
     const publicationYear = new Date(bookData.publicationDate).getFullYear();
     const reviewsCount = bookData.reviews.length;
 
-    const toggleDescription = () => setShowFullDescription(!showFullDescription);
-
-    // Generate the short version and split into paragraphs
+    // Generate the short version of the description
     const generateShortDescription = (text, charLimit) => {
         const shortText = text.slice(0, charLimit);
-
-        // Divide the text into sentences and add '...' to the last paragraph
-        const paragraphs = shortText.split('. ').map((sentence, index, array) => (
+        return shortText.split('. ').map((sentence, index, array) => (
             <p key={index} className="book-page__paragraph">
                 {sentence.trim() + (index < array.length - 1 ? '.' : '...')}
             </p>
         ));
-
-        return paragraphs;
     };
 
-    // Generate the short version (first 200 characters)
     const shortDescription = generateShortDescription(bookData.description, 200);
-
-    // Full version split into paragraphs
     const fullDescription = bookData.description.split('. ').map((sentence, index) => (
         <p key={index} className="book-page__paragraph">
             {sentence.trim() + (index < bookData.description.split('. ').length - 1 ? '.' : '')}
         </p>
     ));
 
-    // Check if the description exceeds the character limit
     const shouldShowToggleButton = bookData.description.length > 200;
 
     return (
@@ -61,15 +49,27 @@ export default function BookPage() {
                         <Link className="book-page__author">{bookData.author}</Link>
                     </p>
                     <div className="book-page__rating">
-                        {bookData.averageRating ? <Rating size={24} readonly={true} initialValue={bookData.averageRating} /> : undefined}
-                        {bookData.averageRating ? <p>{reviewsCount} reviews</p> : undefined}
-                         
-                        {!bookData.averageRating && 'No ratings yet | '} 
-                        {!bookData.averageRating && isAuthenticated && <Link to={`/post-review/${bookData._id}`}>Review it now</Link>}
-                        {!bookData.averageRating && !isAuthenticated && <Link to={'/login'}>Review it now</Link>}
+                        {bookData.averageRating != 0 && (
+                            <>
+                                <Rating size={24} readonly={true} initialValue={bookData.averageRating} />
+                                <p>{reviewsCount} reviews</p>
+                            </>
+                        )}
+                        {!bookData.averageRating && (
+                            <>
+                                <p>No ratings yet |</p>
+                                <Link to={`/post-review/${bookData._id}`}>
+                                    Review it now
+                                </Link>
+                            </>
+                        )}
                     </div>
-                    {!userHasReviewed() && (bookData.averageRating && isAuthenticated) ? <Button type={'link'} navigateTo={`/post-review/${bookData._id}`}>Review this book</Button> : undefined}
-                    
+
+                    {bookData.averageRating != 0 && shouldShowReviewButton && (
+                        <Button type="link" navigateTo={`/post-review/${bookData._id}`}>
+                            Review this book
+                        </Button>
+                    )}
                 </div>
             </section>
 
@@ -77,9 +77,8 @@ export default function BookPage() {
                 <h3 className="book-page__subtitle book-page__subtitle--description">Book Description</h3>
                 <div className="book-page__description">
                     {shouldShowToggleButton && !showFullDescription ? shortDescription : fullDescription}
-
                     {shouldShowToggleButton && (
-                        <button onClick={toggleDescription} className="book-page__toggle-button">
+                        <button onClick={() => setShowFullDescription(!showFullDescription)} className="book-page__toggle-button">
                             {showFullDescription ? 'Show less' : 'Show more'}
                         </button>
                     )}
@@ -106,8 +105,8 @@ export default function BookPage() {
             <section className="book-page__reviews-section">
                 <h3 className="book-page__subtitle">Reviews</h3>
                 {bookData.averageRating ? (
-                    reviews.map(review => 
-                        <ReviewBox 
+                    reviews.map(review => (
+                        <ReviewBox
                             key={review._id}
                             reviewId={review._id}
                             title={review.title}
@@ -116,16 +115,17 @@ export default function BookPage() {
                             rating={review.rating}
                             userName={review.userId.userName}
                             userId={review.userId._id}
-                        />)
+                        />
+                    ))
                 ) : (
                     <>
                         <p className="book-page__rating">No reviews available for this book yet</p>
-                        {isAuthenticated && <Link className='book-page__reviews-section-rating-link' to={`/post-review/${bookData._id}`}>Review it now</Link>}
-                        {!isAuthenticated && <Link className='book-page__reviews-section-rating-link' to={'/login'}>Review it now</Link>}
+                        <Link to={`/post-review/${bookData._id}`} className="book-page__reviews-section-rating-link">
+                            Review it now
+                        </Link>
                     </>
                 )}
             </section>
-
         </div>
     );
 }
