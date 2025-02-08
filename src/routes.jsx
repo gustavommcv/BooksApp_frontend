@@ -15,6 +15,7 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ReviewPage from "./pages/ReviewPage/ReviewPage";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import PostReviewPage from "./pages/PostReviewPage/PostReviewPage";
+import ProfileSettingsPage from "./pages/ProfileSettingsPage/ProfileSettingsPage";
 
 const router = createBrowserRouter([
   {
@@ -39,7 +40,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/profile/:userId',
-        element: <ProfilePage />
+        element: <ProfilePage />,
       },
       {
         path: '/review/:reviewId',
@@ -68,6 +69,17 @@ const router = createBrowserRouter([
           {
             path: ':bookId',
             element: <PostReviewPage />
+          }
+        ]
+      },
+      // Protected route for profile settings
+      {
+        path: '/profile/settings',
+        element: <ProtectedRoute />,
+        children: [
+          {
+            index: true,
+            element: <ProfileSettingsPage />
           }
         ]
       }

@@ -72,7 +72,7 @@ export default function Header() {
                                     <Link onClick={toggleMenu} to={`/profile/${user._id}`}>Profile</Link>
                                 </li>
                                 <li>
-                                    <Link to="/settings">Settings</Link>
+                                    <Link to="/profile/settings">Settings</Link>
                                 </li>
                                 <li onClick={handleLogout}>Logout</li>
                             </ul>
