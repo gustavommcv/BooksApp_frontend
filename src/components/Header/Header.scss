@@ -29,7 +29,10 @@
     gap: 1rem;
 
     &-picture {
-      max-width: 5rem;
+      width: 5rem;
+      height: 5rem;
+      object-fit: cover;
+      border-radius: 50%;
 
       &--button {
         cursor: pointer;
