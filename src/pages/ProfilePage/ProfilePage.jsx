@@ -42,6 +42,10 @@ export default function ProfilePage() {
                         />
                     : undefined}
 
+                    {user.bio ?
+                    <p className="profile-page__bio">Bio:<br/>{user.bio}</p>
+                    : undefined}
+
                     {/* Toggle buttons to switch between reviews and comments */}
                     <div className="profile-page__toggle">
                         <button 
