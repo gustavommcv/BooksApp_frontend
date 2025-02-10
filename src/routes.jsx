@@ -16,6 +16,7 @@ import ReviewPage from "./pages/ReviewPage/ReviewPage";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import PostReviewPage from "./pages/PostReviewPage/PostReviewPage";
 import ProfileSettingsPage from "./pages/ProfileSettingsPage/ProfileSettingsPage";
+import PostCommentPage from "./pages/PostCommentPage/PostCommentPage";
 
 const router = createBrowserRouter([
   {
@@ -69,6 +70,16 @@ const router = createBrowserRouter([
           {
             path: ':bookId',
             element: <PostReviewPage />
+          }
+        ]
+      },
+      {
+        path: '/post-comment',
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: ':reviewId',
+            element: <PostCommentPage />
           }
         ]
       },

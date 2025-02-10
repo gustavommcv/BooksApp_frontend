@@ -79,6 +79,7 @@ export default function ReviewPage() {
                             <p>No comments available.</p>
                         )}
                     </div>
+                    <Link to={`/post-comment/${reviewId}`}>Make a comment</Link>
                 </>
             ) : (
                 <h2>Review not found</h2>
